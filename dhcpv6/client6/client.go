@@ -6,7 +6,7 @@ import (
 	"net"
 	"time"
 
-	"github.com/autonomy/dhcp/dhcpv6"
+	"github.com/talos-systems/dhcp/dhcpv6"
 )
 
 // Client constants

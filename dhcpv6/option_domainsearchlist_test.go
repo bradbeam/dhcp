@@ -3,7 +3,7 @@ package dhcpv6
 import (
 	"testing"
 
-	"github.com/autonomy/dhcp/rfc1035label"
+	"github.com/talos-systems/dhcp/rfc1035label"
 	"github.com/stretchr/testify/require"
 )
 

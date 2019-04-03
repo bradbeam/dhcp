@@ -9,9 +9,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/autonomy/dhcp/dhcpv4"
-	"github.com/autonomy/dhcp/dhcpv4/client4"
-	"github.com/autonomy/dhcp/interfaces"
+	"github.com/talos-systems/dhcp/dhcpv4"
+	"github.com/talos-systems/dhcp/dhcpv4/client4"
+	"github.com/talos-systems/dhcp/interfaces"
 	"github.com/stretchr/testify/require"
 )
 

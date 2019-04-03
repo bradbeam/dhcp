@@ -4,8 +4,8 @@ import (
 	"log"
 	"net"
 
-	"github.com/autonomy/dhcp/dhcpv6"
-	"github.com/autonomy/dhcp/iana"
+	"github.com/talos-systems/dhcp/dhcpv6"
+	"github.com/talos-systems/dhcp/iana"
 )
 
 func main() {

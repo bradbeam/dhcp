@@ -3,7 +3,7 @@ package dhcpv4
 import (
 	"testing"
 
-	"github.com/autonomy/dhcp/iana"
+	"github.com/talos-systems/dhcp/iana"
 	"github.com/stretchr/testify/require"
 )
 

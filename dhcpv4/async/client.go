@@ -8,8 +8,8 @@ import (
 	"time"
 
 	promise "github.com/fanliao/go-promise"
-	"github.com/autonomy/dhcp/dhcpv4"
-	"github.com/autonomy/dhcp/dhcpv4/client4"
+	"github.com/talos-systems/dhcp/dhcpv4"
+	"github.com/talos-systems/dhcp/dhcpv4/client4"
 )
 
 // Default ports

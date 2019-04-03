@@ -1,7 +1,7 @@
 package dhcpv4
 
 import (
-	"github.com/autonomy/dhcp/iana"
+	"github.com/talos-systems/dhcp/iana"
 )
 
 // OptClientArch returns a new Client System Architecture Type option.

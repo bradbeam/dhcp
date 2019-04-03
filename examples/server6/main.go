@@ -4,8 +4,8 @@ import (
 	"log"
 	"net"
 
-	"github.com/autonomy/dhcp/dhcpv6"
-	"github.com/autonomy/dhcp/dhcpv6/server6"
+	"github.com/talos-systems/dhcp/dhcpv6"
+	"github.com/talos-systems/dhcp/dhcpv6/server6"
 )
 
 func handler(conn net.PacketConn, peer net.Addr, m dhcpv6.DHCPv6) {

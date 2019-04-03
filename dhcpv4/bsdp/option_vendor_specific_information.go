@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/autonomy/dhcp/dhcpv4"
+	"github.com/talos-systems/dhcp/dhcpv4"
 )
 
 // VendorOptions is like dhcpv4.Options, but stringifies using BSDP-specific

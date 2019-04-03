@@ -1,7 +1,7 @@
 # dhcp
-[![Build Status](https://travis-ci.org/autonomy/dhcp.svg?branch=master)](https://travis-ci.org/autonomy/dhcp)
-[![codecov](https://codecov.io/gh/autonomy/dhcp/branch/master/graph/badge.svg)](https://codecov.io/gh/autonomy/dhcp)
-[![Go Report Card](https://goreportcard.com/badge/github.com/autonomy/dhcp)](https://goreportcard.com/report/github.com/autonomy/dhcp)
+[![Build Status](https://travis-ci.org/talos-systems/dhcp.svg?branch=master)](https://travis-ci.org/talos-systems/dhcp)
+[![codecov](https://codecov.io/gh/talos-systems/dhcp/branch/master/graph/badge.svg)](https://codecov.io/gh/talos-systems/dhcp)
+[![Go Report Card](https://goreportcard.com/badge/github.com/talos-systems/dhcp)](https://goreportcard.com/report/github.com/talos-systems/dhcp)
 
 DHCPv4 and DHCPv6 decoding/encoding library with client and server code, written in Go.
 
@@ -22,7 +22,7 @@ pulled in automatically if necessary.
 
 So, to get `dhcpv6` and `dhpv4` just run:
 ```
-go get -u github.com/autonomy/dhcp/dhcpv{4,6}
+go get -u github.com/talos-systems/dhcp/dhcpv{4,6}
 ```
 
 
@@ -39,7 +39,7 @@ packages.
 * TODO dhcpv4 packet crafting
 
 
-See more example code at https://github.com/autonomy/exdhcp
+See more example code at https://github.com/talos-systems/exdhcp
 
 
 # Public projects that use it

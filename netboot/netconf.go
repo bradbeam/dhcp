@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/autonomy/dhcp/dhcpv4"
-	"github.com/autonomy/dhcp/dhcpv6"
+	"github.com/talos-systems/dhcp/dhcpv4"
+	"github.com/talos-systems/dhcp/dhcpv6"
 	"github.com/vishvananda/netlink"
 )
 

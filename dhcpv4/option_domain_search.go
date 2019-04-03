@@ -1,7 +1,7 @@
 package dhcpv4
 
 import (
-	"github.com/autonomy/dhcp/rfc1035label"
+	"github.com/talos-systems/dhcp/rfc1035label"
 )
 
 // OptDomainSearch returns a new domain search option.

@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/autonomy/dhcp/dhcpv4"
+	"github.com/talos-systems/dhcp/dhcpv4"
 )
 
 /*
@@ -33,7 +33,7 @@ import (
 	"log"
 	"net"
 
-	"github.com/autonomy/dhcp/dhcpv4"
+	"github.com/talos-systems/dhcp/dhcpv4"
 )
 
 func handler(conn net.PacketConn, peer net.Addr, m dhcpv4.DHCPv4) {

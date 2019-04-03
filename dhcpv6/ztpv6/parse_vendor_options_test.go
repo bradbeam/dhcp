@@ -3,7 +3,7 @@ package ztpv6
 import (
 	"testing"
 
-	"github.com/autonomy/dhcp/dhcpv6"
+	"github.com/talos-systems/dhcp/dhcpv6"
 	"github.com/stretchr/testify/require"
 )
 

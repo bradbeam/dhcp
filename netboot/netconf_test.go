@@ -5,9 +5,9 @@ import (
 	"net"
 	"testing"
 
-	"github.com/autonomy/dhcp/dhcpv4"
-	"github.com/autonomy/dhcp/dhcpv6"
-	"github.com/autonomy/dhcp/iana"
+	"github.com/talos-systems/dhcp/dhcpv4"
+	"github.com/talos-systems/dhcp/dhcpv6"
+	"github.com/talos-systems/dhcp/iana"
 	"github.com/stretchr/testify/require"
 )
 

@@ -23,8 +23,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/autonomy/dhcp/iana"
-	"github.com/autonomy/dhcp/rfc1035label"
+	"github.com/talos-systems/dhcp/iana"
+	"github.com/talos-systems/dhcp/rfc1035label"
 	"github.com/u-root/u-root/pkg/uio"
 )
 

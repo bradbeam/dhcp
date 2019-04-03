@@ -3,8 +3,8 @@ package bsdp
 import (
 	"errors"
 
-	"github.com/autonomy/dhcp/dhcpv4"
-	"github.com/autonomy/dhcp/dhcpv4/client4"
+	"github.com/talos-systems/dhcp/dhcpv4"
+	"github.com/talos-systems/dhcp/dhcpv4/client4"
 )
 
 // Client represents a BSDP client that can perform BSDP exchanges via the

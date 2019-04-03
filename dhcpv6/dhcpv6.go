@@ -6,7 +6,7 @@ import (
 	"net"
 	"strings"
 
-	"github.com/autonomy/dhcp/iana"
+	"github.com/talos-systems/dhcp/iana"
 	"github.com/u-root/u-root/pkg/uio"
 )
 
