@@ -221,29 +221,38 @@ func (c *Client) Exchange(ifname string, modifiers ...dhcpv4.Modifier) ([]*dhcpv
 	}()
 
 	// Discover
+	log.Printf("discovery for %s", ifname)
 	discover, err := dhcpv4.NewDiscoveryForInterface(ifname, modifiers...)
 	if err != nil {
+		log.Printf("failed in discover for %s, %+v", ifname, conversation)
 		return conversation, err
 	}
 	conversation = append(conversation, discover)
 
 	// Offer
+	log.Printf("offer for %s", ifname)
 	offer, err := c.SendReceive(sfd, rfd, discover, dhcpv4.MessageTypeOffer)
 	if err != nil {
+		log.Printf("failed in offer for %s, %+v", ifname, conversation)
 		return conversation, err
 	}
 	conversation = append(conversation, offer)
 
 	// Request
+	log.Printf("request for %s", ifname)
 	request, err := dhcpv4.NewRequestFromOffer(offer, modifiers...)
 	if err != nil {
+		log.Printf("failed in request for %s, %+v", ifname, conversation)
 		return conversation, err
 	}
 	conversation = append(conversation, request)
 
 	// Ack
+	log.Printf("ack for %s", ifname)
 	ack, err := c.SendReceive(sfd, rfd, request, dhcpv4.MessageTypeAck)
 	if err != nil {
+		log.Printf("request: %+v", request)
+		log.Printf("failed in ack for %s, %+v", ifname, conversation)
 		return conversation, err
 	}
 	conversation = append(conversation, ack)
@@ -278,13 +287,16 @@ func (c *Client) SendReceive(sendFd, recvFd int, packet *dhcpv4.DHCPv4, messageT
 	remoteAddr := unix.SockaddrInet4{Port: laddr.Port, Addr: destination}
 	recvErrors := make(chan error, 1)
 	go func(errs chan<- error) {
+		log.Println("im failing here 1")
 		// set read timeout
 		timeout := unix.NsecToTimeval(c.ReadTimeout.Nanoseconds())
 		if innerErr := unix.SetsockoptTimeval(recvFd, unix.SOL_SOCKET, unix.SO_RCVTIMEO, &timeout); innerErr != nil {
+			log.Println("im failing here 2")
 			errs <- innerErr
 			return
 		}
 		for {
+			log.Println("im failing here 3")
 			buf := make([]byte, MaxUDPReceivedPacketSize)
 			n, _, innerErr := unix.Recvfrom(recvFd, buf, 0)
 			if innerErr != nil {
@@ -292,15 +304,20 @@ func (c *Client) SendReceive(sendFd, recvFd int, packet *dhcpv4.DHCPv4, messageT
 				return
 			}
 
+			log.Println("im failing here 4")
 			var iph ipv4.Header
 			if err := iph.Parse(buf[:n]); err != nil {
 				// skip non-IP data
 				continue
 			}
+			log.Println("im failing here 5")
+			log.Printf("iph: %+v", iph)
+			log.Printf("protocol: %d", iph.Protocol)
 			if iph.Protocol != 17 {
 				// skip non-UDP packets
 				continue
 			}
+			log.Println("im failing here 6")
 			udph := buf[iph.Len:n]
 			// check source and destination ports
 			srcPort := int(binary.BigEndian.Uint16(udph[0:2]))
@@ -311,6 +328,7 @@ func (c *Client) SendReceive(sendFd, recvFd int, packet *dhcpv4.DHCPv4, messageT
 			if srcPort != expectedSrcPort {
 				continue
 			}
+			log.Println("im failing here 7")
 			dstPort := int(binary.BigEndian.Uint16(udph[2:4]))
 			expectedDstPort := dhcpv4.ClientPort
 			if c.RemoteAddr != nil {
@@ -319,6 +337,7 @@ func (c *Client) SendReceive(sendFd, recvFd int, packet *dhcpv4.DHCPv4, messageT
 			if dstPort != expectedDstPort {
 				continue
 			}
+			log.Println("im failing here 8")
 			// UDP checksum is not checked
 			pLen := int(binary.BigEndian.Uint16(udph[4:6]))
 			payload := buf[iph.Len+8 : iph.Len+8+pLen]
@@ -328,20 +347,24 @@ func (c *Client) SendReceive(sendFd, recvFd int, packet *dhcpv4.DHCPv4, messageT
 				errs <- innerErr
 				return
 			}
+			log.Println("im failing here 9")
 			// check that this is a response to our message
 			if response.TransactionID != packet.TransactionID {
 				continue
 			}
+			log.Println("im failing here 10")
 			// wait for a response message
 			if response.OpCode != dhcpv4.OpcodeBootReply {
 				continue
 			}
 			// if we are not requested to wait for a specific message type,
 			// return what we have
+			log.Println("im failing here 11")
 			if messageType == dhcpv4.MessageTypeNone {
 				break
 			}
 			// break if it's a reply of the desired type, continue otherwise
+			log.Println("im failing here 12")
 			if response.MessageType() == messageType {
 				break
 			}
@@ -356,13 +379,17 @@ func (c *Client) SendReceive(sendFd, recvFd int, packet *dhcpv4.DHCPv4, messageT
 
 	select {
 	case err = <-recvErrors:
+		log.Println("real error")
 		if err == unix.EAGAIN {
+			log.Println("unix.EAGAIN")
 			return nil, errors.New("timed out while listening for replies")
 		}
 		if err != nil {
+			log.Println("not nil error")
 			return nil, err
 		}
 	case <-time.After(c.ReadTimeout):
+		log.Println("Timeout for realsies")
 		return nil, errors.New("timed out while listening for replies")
 	}
 
